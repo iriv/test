@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	    <script>
+
+            function guides(){
+
+                this.data = [];
+
+                this.getData =function(){
+
+//                    var thisobj = this;
+
+                    obj = {
+                        url:"data.json",
+                        type:"GET",
+                        dataType:"json",
+//                        success:function(data){
+////                        console.log(data);
+//
+//                            console.log(this);
+////                            console.log(data.length);
+////                            console.log(data);
+//                        },
+                        success:this.saveData
+                    };
+
+                    $.ajax(obj);
+                };
+
+
+                this.saveData = function(data){
+                    this.data = data;
+//                    console.log(this.data);
+
+                    for (var i in arr = this.data){
+
+//                        if (arr[i][0])
+
+                        console.log(arr[i][0]);
+
+                    }
+
+                };
+
+
+
+                this.getData();
+            }
+
+            var guides = new guides();
+
+	    </script>
+	</head>
+	<body>
+			
+	</body>
+</html>
