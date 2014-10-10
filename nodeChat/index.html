@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script>
+
+		$(function(){
+			getm();
+
+			setInterval(function(){
+				getm();
+			},1000);
+
+		});
+
+		function getm(){
+
+				obj = {
+				url:"get.php",
+				type:"GET",
+				dataType: "json", 
+				success:function(e){
+					console.log("s");
+					 console.log(e);		
+				},
+				complete:function(e){
+					 text = e.responseText;
+					 $("#chatBlock").html(text);
+				}
+			};
+
+			$.ajax(obj);
+		}
+
+		function q(mesText){
+
+			obj = {
+				url:"q.php",
+				data:"mes=" + mesText,
+				type:"GET",
+				//dataType:"htmlp",
+				dataType: "json", 
+				success:function(e){
+					console.log("s");
+					 console.log(e);		
+				},
+				complete:function(e){
+
+					 text = e.responseText;
+
+					 $("#chatBlock").html(text);
+				}
+			};
+
+			$.ajax(obj);
+		}
+
+		</script>
+		<style type="text/css">
+			#chatBlock {
+				/*border: 1px solid #999;*/
+				background-color: #ccc;
+				position: absolute;
+				left:300px;
+				top:30px;
+				width: 80%;
+				height: 50%;
+				overflow: scroll;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<form action="" method="GET">
+			Your message: <br>
+			<textarea name="mes" id="mes" cols="30" rows="10"></textarea> <br>
+			<input type="button" value="send" onclick="q($('#mes').val())">
+		</form>
+
+		<br>
+		<br>
+		<div id="chatBlock">
+			
+		</div>
+
+	</body>
+</html>
